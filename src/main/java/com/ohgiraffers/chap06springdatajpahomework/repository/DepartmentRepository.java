@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<Department,Integer> {
-    @Query("SELECT d FROM department d ORDER BY d.departmentCode")
+//    @Query("SELECT d FROM department d ORDER BY d.departmentCode")
+//    List<Department> findAllDepartment();
+
+    @Query(value=("SELECT * FROM tbl_department"),nativeQuery = true)
     List<Department> findAllDepartment();
 }
