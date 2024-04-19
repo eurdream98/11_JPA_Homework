@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>전체 환자 조회</h1>
+<table>
+  <th>환자코드</th>
+  <th>환자이름</th>
+  <th>환자나이</th>
+  <th>환자성별</th>
+  <th>환자핸드폰</th>
+  <th>환자이메일</th>
+  <th>환자아픈이유</th>
+  <th>환자입원여부</th>
+  <th>진료과</th>
+  <tr th:each="patient:${patientList}">
+    <td th:text="${patient.getPatientCode()}"></td>
+    <td th:text="${patient.getPatientName()}"></td>
+    <td th:text="${patient.getPatientAge()}"></td>
+    <td th:text="${patient.getPatientGender()}"></td>
+    <td th:text="${patient.getPatientPhone()}"></td>
+    <td th:text="${patient.getPatientEmail()}"></td>
+    <td th:text="${patient.getPatientSick()}"></td>
+    <td th:text="${patient.getPatientAdmission()}"></td>
+    <td th:text="${patient.getDepartmentCode()}"></td>
+  </tr>
+</table>
+
+<div id="paging" >
+  <!-- 맨 앞으로 이동 -->
+  <button
+          th:onclick="'location.href=\'/patient/list?page=' + @{${paging.startPage}} + '\''">
+    <<
+  </button>
+  <!-- 이전 페이지로 이동 -->
+  <button
+          th:onclick="'location.href=\'/patient/list?page=' + @{${paging.currentPage - 1}} + '\''"
+          th:disabled="${ patientList.first }">
+    <
+  </button>
+  <!-- 숫자 버튼 -->
+  <th:block th:each="page : ${ #numbers.sequence(paging.startPage,paging.endPage)}">
+    <button th:onclick="'location.href=\'/patient/list?page=' + @{${page}} + '\''"
+            th:text="${ page }"
+            th:disabled="${ paging.currentPage eq page }">
+    </button>
+  </th:block>
+
+  <!-- 다음 페이지로 이동 -->
+  <button
+          th:onclick="'location.href=\'/patient/list?page=' + @{${paging.currentPage + 1}} + '\''"
+          th:disabled="${ patientList.last }">
+    >
+  </button>
+  <!-- 맨 끝으로 이동 -->
+  <button
+          th:onclick="'location.href=\'/patient/list?page=' + @{${paging.endPage}} + '\''">
+    >>
+  </button>
+</div>
+</body>
+</html>

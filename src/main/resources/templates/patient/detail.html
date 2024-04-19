@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>환자 조회</h1>
+<table>
+    <tr>
+        <td th:text="${patient.getDepartmentCode()}"></td>
+        <td th:text="${patient.getPatientName()}"></td>
+        <td th:text="${patient.getPatientAge()}"></td>
+        <td th:text="${patient.getPatientGender()}"></td>
+        <td th:text="${patient.getPatientPhone()}"></td>
+        <td th:text="${patient.getPatientEmail()}"></td>
+        <td th:text="${patient.getPatientSick()}"></td>
+        <td th:text="${patient.getPatientAdmission()}"></td>
+        <td th:text="${patient.getDepartmentCode()}"></td>
+    </tr>
+</table>
+</body>
+</html>

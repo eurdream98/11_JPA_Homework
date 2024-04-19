@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>환자 추가하기</h1>
+<form action="/patient/insert" method="post">
+  <label>환자 코드</label>
+  <input type="number" name="patientCode"/>
+  <label>환자 이름</label>
+  <input type="text" name="patientName"/>
+  <label>환자 나이</label>
+  <input type="number" name="patientAge"/>
+  <label>환자 성별</label>
+  <select name="patientGender">
+    <option>남</option>
+    <option>여</option>
+  </select>
+  <label>환자 핸드폰</label>
+  <input type="text" name="patientPhone"/>
+  <label>환자 이메일</label>
+  <input type="text" name="patientEmail"/>
+  <label>환자 아픈 이유</label>
+  <input type="text" name="patientSick"/>
+  <label>환자 입원여부</label>
+  <input type="text" name="patientAdmission">
+  <label>진료과</label>
+  <select name="departmentCode" id="department">
+
+  </select>
+  <input type="submit"/>
+</form>
+</body>
+</html>
+<script>
+
+  fetch('/patient/department')
+  .then(res => res.json())
+  .then(data => {
+    const $depart = document.querySelector("#department");
+    for(let index in data){
+      const $option = document.createElement('option');
+      $option.value=data[index].departmentCode;
+      $option.textContent = data[index].departmentName;
+      $depart.appendChild($option);
+    }
+  })
+</script>
